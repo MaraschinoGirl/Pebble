@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { db } from '@/lib/db';
 import type { Habit, Entry } from '@/lib/types';
 import { todayKey } from '@/lib/date';
+import HabitEditor from '@/components/HabitEditor';
+
 
 export default function Page() {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -86,6 +88,11 @@ export default function Page() {
           <p className="mt-6 text-neutral-400">No habits yet. Seeding examples…</p>
         )}
       </div>
+            {/* Add-habit floating button + modal */}
+      <HabitEditor onAdded={async () => {
+        const all = await db.habits.toArray();
+        setHabits(all);
+      }} />
     </main>
   );
 }
