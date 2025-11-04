@@ -19,3 +19,10 @@ export type Entry = {
   stretchDone?: boolean;
   note?: string;
 };
+
+export type StreakState = {
+  habitId: string;
+  softStreak: number;       // increases on hits, gently decays on misses
+  graceBank: number;        // refilled weekly (e.g., 2)
+  lastComputedDay: string;  // YYYY-MM-DD (the day we last updated)
+};
